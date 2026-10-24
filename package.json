@@ -1,0 +1,22 @@
+{
+  "name": "monday-night-club",
+  "version": "1.0.0",
+  "description": "Club app for weekly table tennis, darts and pool nights: profiles, results, leaderboards, medals, achievements and media.",
+  "private": true,
+  "type": "module",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node --no-warnings=ExperimentalWarning server/index.js",
+    "dev": "node --no-warnings=ExperimentalWarning --watch server/index.js",
+    "seed-demo": "node --no-warnings=ExperimentalWarning scripts/seed-demo.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^10.2.0",
+    "web-push": "^3.6.7"
+  }
+}
