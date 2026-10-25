@@ -33,6 +33,25 @@ The demo has a live night today with 18 players on 3 tables. When you're done, s
 
 ## 2. Share it with the whole club (internet access)
 
+### Option A: cloud hosting on Railway (always online, recommended)
+
+The repo includes a `Dockerfile` and `railway.json`, so Railway can build it straight from GitHub.
+It costs about $5/month (Hobby plan) and stays online when your PC is off.
+
+1. Sign in at <https://railway.com> with your GitHub account and pick the Hobby plan.
+2. **New Project → Deploy from GitHub repo →** choose `TableTennis`. Railway builds and starts it.
+3. In the service, **add a Volume** (right-click the service → Attach volume) with mount path
+   `/data`. This is where the database, photos and videos live. Without it, everything is wiped
+   on each deploy.
+4. **Settings → Networking → Generate Domain** to get a link like `https://tabletennis-production.up.railway.app`.
+   You can add your own domain there later.
+5. Open the link and sign up straight away: the first account becomes the admin.
+6. In Admin → Settings, set the public URL to that link so emails and reminders point to it.
+
+Every push to `main` redeploys automatically. Back up the volume from Railway's Volume tab.
+
+### Option B: from your PC with Cloudflare Tunnel
+
 The easiest safe option is a **Cloudflare Tunnel**: no router changes, your home IP stays hidden,
 and you get https automatically.
 
@@ -135,6 +154,7 @@ games (e.g. Foosball). No code changes needed.
 |---|---|---|
 | `PORT` | `3000` | Port the server listens on |
 | `DATA_DIR` | `./data` | Where the database and uploads are stored |
+| `TRUST_PROXY` | `loopback` | Which proxies to trust for https and client IPs; the Dockerfile sets `1` for cloud hosts |
 
 ## Mobile app later
 

@@ -23,7 +23,9 @@ const app = express();
 
 app.disable('x-powered-by');
 // Behind Cloudflare Tunnel / ngrok the real client IP and https come from proxy headers.
-app.set('trust proxy', 'loopback');
+// Cloud hosts (Railway, Render, Fly) proxy from another machine, so they set TRUST_PROXY=1.
+const trustProxy = process.env.TRUST_PROXY;
+app.set('trust proxy', trustProxy ? (/^\d+$/.test(trustProxy) ? Number(trustProxy) : trustProxy) : 'loopback');
 
 app.use((req, res, next) => {
   res.set('X-Content-Type-Options', 'nosniff');
