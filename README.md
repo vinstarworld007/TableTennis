@@ -50,6 +50,18 @@ It costs about $5/month (Hobby plan) and stays online when your PC is off.
 
 Every push to `main` redeploys automatically. Back up the volume from Railway's Volume tab.
 
+### Option A2: cloud hosting on Render (always online)
+
+The repo also includes `render.yaml`. Render's Starter plan costs about $7/month, plus about $1.25/month for a 5 GB disk.
+
+1. Sign in at <https://render.com> with GitHub and add a payment card. Disks need a paid plan.
+2. **New → Blueprint →** connect GitHub and choose `TableTennis`, then **Apply**. Render creates the
+   service and the `/data` disk, then builds it. The first build takes about 5 minutes.
+3. Open the `https://monday-night-club-xxxx.onrender.com` link shown on the service and sign up
+   straight away: the first account becomes the admin.
+4. In Admin → Settings, set the public URL to that link. Add your own domain later under
+   Settings → Custom Domains.
+
 ### Option B: from your PC with Cloudflare Tunnel
 
 The easiest safe option is a **Cloudflare Tunnel**: no router changes, your home IP stays hidden,

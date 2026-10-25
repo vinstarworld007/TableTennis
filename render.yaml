@@ -1,0 +1,18 @@
+# Render Blueprint: New → Blueprint → pick this repo. Creates the web service and a
+# persistent disk at /data for the database, photos and videos.
+services:
+  - type: web
+    name: monday-night-club
+    runtime: docker
+    plan: starter
+    healthCheckPath: /
+    autoDeploy: true
+    disk:
+      name: club-data
+      mountPath: /data
+      sizeGB: 5
+    envVars:
+      - key: DATA_DIR
+        value: /data
+      - key: TRUST_PROXY
+        value: "1"
